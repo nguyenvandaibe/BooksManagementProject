@@ -29,6 +29,14 @@
 		<url-pattern>/books</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>BookSearchServlet</servlet-name>
+		<servlet-class>servlets.BookSearchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BookSearchServlet</servlet-name>
+		<url-pattern>/booksearch</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>servlets.LoginServlet</servlet-class>
 	</servlet>
