@@ -20,6 +20,21 @@
 		<param-name>DbPassword</param-name>
 		<param-value>""</param-value>
 	</context-param>
+	<env-entry> 
+    	<env-entry-name>DB_HOST</env-entry-name>
+    	<env-entry-type>java.lang.String</env-entry-type>
+    	<env-entry-value>jdbc:mysql://localhost:3306/db_group3</env-entry-value> 
+	</env-entry>
+	<env-entry> 
+    	<env-entry-name>DB_USER</env-entry-name>
+    	<env-entry-type>java.lang.String</env-entry-type>
+    	<env-entry-value>root</env-entry-value> 
+	</env-entry>
+	<env-entry> 
+    	<env-entry-name>DB_PASSWORD</env-entry-name>
+    	<env-entry-type>java.lang.String</env-entry-type>
+    	<env-entry-value></env-entry-value> 
+	</env-entry>
 	<servlet>
 		<servlet-name>BooksServlet</servlet-name>
 		<servlet-class>servlets.BooksServlet</servlet-class>
