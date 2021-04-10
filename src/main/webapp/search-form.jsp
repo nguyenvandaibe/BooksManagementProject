@@ -18,7 +18,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-4">
-				<form action="booksearch" method="post">
+				<form action="booksearch" method="get">
 					<div class="font-weight-bold text-center">SEARCH BOOK</div>
 					<div class="form-group my-6">
 						<input type="text" name="bookName" id="bookName" class="form-control" placeholder="Type book's name...">

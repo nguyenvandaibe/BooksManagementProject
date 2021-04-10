@@ -26,8 +26,9 @@ public class LoginServlet extends HttpServlet {
 		// cau hinh cookie (lam sau)
 		//
 		
-		RequestDispatcher view = req.getRequestDispatcher("search-form.jsp");
-		view.forward(req, resp);
+//		RequestDispatcher view = req.getRequestDispatcher("search-form.jsp");
+//		view.forward(req, resp);
+		resp.sendRedirect("search-form.jsp");
 		
 	}
 }
