@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +17,7 @@
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 </head>
+
 <body>
 	<div class="container">
 		<div class="font-weight-bold text-center">SEARCH RESULT FOR
@@ -42,10 +44,11 @@
 								<td><c:out value="${book.name}"></c:out></td>
 								<td><c:out value="${book.publisher}"></c:out></td>
 								<td><c:out value="${book.price}"></c:out></td>
-								<td class="d-flex justify-content-between">
-									<a href="#" class="btn btn-primary mx-3">Edit</a>
-									<a href="#" class="btn btn-danger mx-3">Remove</a>
-								</td>
+								<td class="d-flex justify-content-between"><a
+									href="books?action=edit&id=<c:out value='${book.id}' />"
+									class="btn btn-primary mx-3">Edit</a> <a
+									href="books?action=destroy&id=<c:out value='${book.id}' />"
+									class="btn btn-danger mx-3">Remove</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -54,4 +57,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

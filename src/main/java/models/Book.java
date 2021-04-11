@@ -85,6 +85,27 @@ public class Book extends BaseModel {
 		this.connection.close();
 		return books;
 	}
+	
+	/**
+	 * Get a book by id
+	 * 
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws NamingException
+	 */
+	public Book getById(Integer id) throws SQLException, ClassNotFoundException, NamingException {
+		String sql = "select * from books where id = " + id;
+		PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+		ResultSet resultSet = preparedStatement.executeQuery(sql);
+		
+		if (resultSet.next()) {
+			return new Book(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("publishier"),
+					resultSet.getInt("price"));
+		}
+		return new Book();
+	}
 
 	/**
 	 * Update a book
@@ -107,7 +128,8 @@ public class Book extends BaseModel {
 			preparedStatement.setInt(4, id);
 
 			preparedStatement.executeUpdate(sql);
-
+			
+			System.out.println("update book return " + true);
 			return true;
 		} catch (SQLException e) {
 			return false;
