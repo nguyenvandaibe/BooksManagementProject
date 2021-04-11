@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +22,35 @@
 			INPUT</div>
 		<div class="text-center fst-italic">
 			<%
-			//String bookName = request.getAttribute("bookName").toString();
-			//out.print(bookName);
+
 			%>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<table class="table">
+					<thead>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Publisher</th>
+						<th>Price</th>
+						<th>Actions</th>
+					</thead>
+					<tbody>
+						<c:forEach var="book" items="${books}">
+							<tr>
+								<td><c:out value="${book.id}"></c:out></td>
+								<td><c:out value="${book.name}"></c:out></td>
+								<td><c:out value="${book.publisher}"></c:out></td>
+								<td><c:out value="${book.price}"></c:out></td>
+								<td class="d-flex justify-content-between">
+									<a href="#" class="btn btn-primary mx-3">Edit</a>
+									<a href="#" class="btn btn-danger mx-3">Remove</a>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>

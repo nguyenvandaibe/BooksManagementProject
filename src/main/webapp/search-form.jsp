@@ -21,7 +21,7 @@
 				<form action="booksearch" method="get">
 					<div class="font-weight-bold text-center">SEARCH BOOK</div>
 					<div class="form-group my-6">
-						<input type="text" name="bookName" id="bookName" class="form-control" placeholder="Type book's name...">
+						<input type="text" name="bookName" id="bookName" class="form-control" placeholder="Type book's name or publisher...">
 					</div>
 					<div class="form-group">
 						<button type="submit"

@@ -1,13 +1,18 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import models.Book;
 
 /**
  * Servlet implementation class BookSearchServlet
@@ -27,9 +32,19 @@ public class BookSearchServlet extends HttpServlet {
 
 		log(bookName);
 
-		// truy van sach theo ten o day
+		ArrayList<Book> books = new ArrayList<Book>();
 
-		req.setAttribute(bookName, bookName);
+		try {
+			books = (new Book()).search(bookName);
+			
+			log("So sach");
+			System.out.println(books.size());
+		} catch (ClassNotFoundException | SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		req.setAttribute("books", books);
 		RequestDispatcher view = req.getRequestDispatcher("search-result.jsp");
 		view.forward(req, resp);
 
