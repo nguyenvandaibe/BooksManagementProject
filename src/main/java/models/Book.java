@@ -85,7 +85,7 @@ public class Book extends BaseModel {
 		this.connection.close();
 		return books;
 	}
-	
+
 	/**
 	 * Get a book by id
 	 * 
@@ -99,7 +99,7 @@ public class Book extends BaseModel {
 		String sql = "select * from books where id = " + id;
 		PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
 		ResultSet resultSet = preparedStatement.executeQuery(sql);
-		
+
 		if (resultSet.next()) {
 			return new Book(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("publishier"),
 					resultSet.getInt("price"));
@@ -119,19 +119,17 @@ public class Book extends BaseModel {
 	 */
 	public boolean update(Integer id, String name, String publisher, Integer price) {
 		try {
-			String sql = "update books set name = ?, publisher = ?, price = ? where id = ?"; // Chong SQL injection
+			String sql = "update books set name = '" + name + "', publishier = '" + publisher + "', price = '" + price
+					+ "' where id = '" + id + "';";
+			System.out.println(sql);
 			PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
 
-			preparedStatement.setString(1, name);
-			preparedStatement.setString(2, publisher);
-			preparedStatement.setInt(3, price);
-			preparedStatement.setInt(4, id);
-
 			preparedStatement.executeUpdate(sql);
-			
+
 			System.out.println("update book return " + true);
 			return true;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
 	}

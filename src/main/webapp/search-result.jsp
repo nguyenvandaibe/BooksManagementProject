@@ -47,7 +47,7 @@
 								<td class="d-flex justify-content-between"><a
 									href="books?action=edit&id=<c:out value='${book.id}' />"
 									class="btn btn-primary mx-3">Edit</a> <a
-									href="books?action=destroy&id=<c:out value='${book.id}' />"
+									href="books?action=remove&id=<c:out value='${book.id}' />"
 									class="btn btn-danger mx-3">Remove</a></td>
 							</tr>
 						</c:forEach>

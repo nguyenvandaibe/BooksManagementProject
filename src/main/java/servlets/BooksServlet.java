@@ -27,12 +27,13 @@ public class BooksServlet extends HttpServlet {
 						showEditForm(request, response, book);
 					} catch (ClassNotFoundException | SQLException | NamingException | ServletException
 							| IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
-				case "destroy": {
-					// Hien thi form destroy
+
+				case "remove": {
+					// Hien thi form xac nhan xoa
+					showDestroyConfirmationForm(request, response, book);
 				}
 				}
 			}
@@ -48,10 +49,10 @@ public class BooksServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		String action = request.getParameter("action");
+		
 		try {
 			Book book = (new Book()).getById(id);
-			switch (action) {
-			case "update": {
+			if (action.contentEquals("update")) {
 				if (update(request, response, book)) {
 					Book updatedBook = (new Book()).getById(id);
 					showEditForm(request, response, updatedBook);
@@ -59,9 +60,15 @@ public class BooksServlet extends HttpServlet {
 					log("false");
 				}
 			}
-			default:
-				throw new IllegalArgumentException("Unexpected value: " + action);
+			
+			else if (action.contentEquals("destroy")) {
+				if (destroy(request, response, book)) {
+					response.sendRedirect("search-form.jsp");
+				} else {
+					log("Delete false");
+				}
 			}
+
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -110,6 +117,8 @@ public class BooksServlet extends HttpServlet {
 	}
 
 	/**
+	 * Hien thi form chinh sua thong tin mot cuon sach
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ClassNotFoundException
@@ -139,5 +148,42 @@ public class BooksServlet extends HttpServlet {
 		String publisher = request.getParameter("publisher");
 		Integer price = Integer.parseInt(request.getParameter("price"));
 		return (new Book()).update(id, name, publisher, price);
+	}
+	
+	/**
+	 * Hien thi form xac nhan rang muon xoa mot cuon sach
+	 * 
+	 * @param request
+	 * @param response
+	 * @param book
+	 */
+	private void showDestroyConfirmationForm(HttpServletRequest request, HttpServletResponse response, Book book) {
+		request.setAttribute("book", book);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("destroy-form.jsp");
+		try {
+			requestDispatcher.forward(request, response);
+		} catch (ServletException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Goi dich vu xoa sach cua model
+	 * 
+	 * @param request
+	 * @param response
+	 * @param book
+	 * @return
+	 */
+	private boolean destroy(HttpServletRequest request, HttpServletResponse response, Book book) {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		try {
+			return (new Book()).destroy(id);
+		} catch (ClassNotFoundException | NamingException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

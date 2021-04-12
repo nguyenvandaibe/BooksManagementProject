@@ -40,7 +40,7 @@
                         <input type="text" name="price" id="price" class="form-control" value="<c:out value='${book.price}' />">
                     </div>
                     <div class="from-group">
-                        <button type="reset" class="btn btn-secondary ml-3">Cancle</button>
+                        <button type="reset" class="btn btn-secondary ml-3">Cancel</button>
                         <button type="submit" class="btn btn-primary ml-3">Save</button>
                     </div>
                 </form>
