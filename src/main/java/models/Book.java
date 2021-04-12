@@ -69,7 +69,7 @@ public class Book extends BaseModel {
 	 * @throws NamingException
 	 */
 	public ArrayList<Book> search(String key) throws SQLException, ClassNotFoundException, NamingException {
-		String sql = "select * from books where name like '%" + key + "%' or publishier like '%" + key + "%';";
+		String sql = "select * from books where name like '%" + key + "%' or publisher like '%" + key + "%';";
 
 		PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
 
@@ -78,7 +78,7 @@ public class Book extends BaseModel {
 		ArrayList<Book> books = new ArrayList<Book>();
 
 		while (resultSet.next()) {
-			books.add(new Book(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("publishier"),
+			books.add(new Book(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("publisher"),
 					resultSet.getInt("price")));
 		}
 
@@ -101,7 +101,7 @@ public class Book extends BaseModel {
 		ResultSet resultSet = preparedStatement.executeQuery(sql);
 
 		if (resultSet.next()) {
-			return new Book(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("publishier"),
+			return new Book(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("publisher"),
 					resultSet.getInt("price"));
 		}
 		return new Book();
@@ -119,7 +119,7 @@ public class Book extends BaseModel {
 	 */
 	public boolean update(Integer id, String name, String publisher, Integer price) {
 		try {
-			String sql = "update books set name = '" + name + "', publishier = '" + publisher + "', price = '" + price
+			String sql = "update books set name = '" + name + "', publisher = '" + publisher + "', price = '" + price
 					+ "' where id = '" + id + "';";
 			System.out.println(sql);
 			PreparedStatement preparedStatement = this.connection.prepareStatement(sql);

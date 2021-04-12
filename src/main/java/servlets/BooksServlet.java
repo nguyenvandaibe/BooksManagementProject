@@ -20,21 +20,10 @@ public class BooksServlet extends HttpServlet {
 			Book book = (new Book()).getById(id);
 
 			if (action != null) {
-				switch (action) {
-				case "edit": {
-					// Hien thi form edit
-					try {
-						showEditForm(request, response, book);
-					} catch (ClassNotFoundException | SQLException | NamingException | ServletException
-							| IOException e) {
-						e.printStackTrace();
-					}
-				}
-
-				case "remove": {
-					// Hien thi form xac nhan xoa
+				if (action.contentEquals("edit")) {
+					showEditForm(request, response, book);
+				} else if (action.contentEquals("remove")) {
 					showDestroyConfirmationForm(request, response, book);
-				}
 				}
 			}
 		} catch (ClassNotFoundException | SQLException | NamingException e1) {
