@@ -53,6 +53,10 @@
 						</c:forEach>
 					</tbody>
 				</table>
+
+				<div class="mt-3 float-left">
+					<a href="javascript:history.back()">Quay lại</a>
+				</div>
 			</div>
 		</div>
 	</div>
